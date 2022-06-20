@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food delivery service</title>
-    <style>
-        body, html {
-  height: 100%;
-}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Delivery Service</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+    }
 
-body{
-  /* The image used */
-  background-image: url("static/Welcome.jpg");
+    body {
+      background-image: url("static/Welcome.jpg");
 
-  /* Full height */
-  height: 100%;
+      height: 100%;
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-    </style>
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    button {
+      background-color: cornflowerblue;
+      padding: 10px 20px;
+      font-size: medium;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 75%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+  </style>
 </head>
+
 <body>
+  <div class="center">
+    <button onclick="myFunction()">Continue</button>
+  </div>
 </body>
+
+<script>
+  function myFunction() {
+    window.location.href = "/order"
+  }
+</script>
+
 </html>
