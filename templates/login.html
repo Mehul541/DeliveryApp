@@ -22,41 +22,49 @@
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
         }
-
     </style>
 </head>
 
 <body>
-    <div class="center">
+    <form onsubmit="return myFunction()" action="/welcome" method="get">
+        <div class="center">
             <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
-                <div class="card-header">Login<img src="static/logo.png" style="margin-left: 75px;" width="100px" height="100px"></div>
+                <div class="card-header">Login<img src="static/logo.png" style="margin-left: 75px;" width="100px"
+                        height="100px"></div>
                 <div class="card-body">
-                <label for="login" class="form-label">Username</label>
-                <input type="email" class="form-control" id="login">
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password">
+                    <label for="login" class="form-label">Username</label>
+                    <input type="email" class="form-control" id="login" required>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-outline-dark">Login</button>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <a href="/register">New User?</a>
+                    </div>
+                </div>
             </div>
-            <div>
-                <button onclick="myFunction()" type="button" class="btn btn-outline-dark">Login</button>
-            </div>
-        </div>
-    </div>
+    </form>
 </body>
-
 <script>
     function myFunction() {
-        login=document.getElementById("login");
-        pass=document.getElementById("password");
-        if(login!="mehuljain541@gmail.com"){
+        var login = document.getElementById("login").value;
+        var pass = document.getElementById("password").value;
+        if (login != "mehuljain541@gmail.com") {
             alert("Wrong Username");
-            if(pass!="123"){
-                alert("Wrong Password");
-            }
+            return false;
         }
-        else{
-        window.location.href = "/welcome";
+        else if (pass != "123") {
+            alert("Wrong Password");
+            return false;
         }
+        return true;
     }
 </script>
 

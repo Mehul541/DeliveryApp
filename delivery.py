@@ -7,12 +7,16 @@ def welcome():
     return render_template("welcome.html")
 
 @app.route("/")
-def home():
+def login():
     return render_template("login.html")
 
 @app.route("/order")
 def order():
     return render_template("order.html")
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
 
 if __name__=="__main__":
     app.run(debug=True,port=8000)
