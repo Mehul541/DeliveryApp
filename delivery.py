@@ -22,7 +22,7 @@ def welcome():
         email=details["Email"]
         password=details["Pass"]
         cur=mysql.connection.cursor()
-        cur.execute("INSERT INTO register(First,Last,Phone,Email,Password) VALUES(%s,%s,%s,%s,%s)",(first,last,phone,email,password))
+        cur.execute(f"INSERT INTO register(First,Last,Phone,Email,Password) VALUES('{first}','{last}','{phone}','{email}','{password}')")
         mysql.connection.commit()
         return redirect(url_for('welcome'))
     else:
