@@ -31,17 +31,17 @@
 </head>
 
 <body>
-    <form onsubmit="return myFunction()" action="/v-nv" method="get">
+    <form onsubmit="return myFunction()" action="/v-nv" method="post">
         <div class="center">
             <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header">Login<img src="static/logo.png" style="margin-left: 75px;" width="100px"
                         height="100px"></div>
                 <div class="card-body">
                     <label for="login" class="form-label">Username</label>
-                    <input type="email" class="form-control" id="login" required>
+                    <input type="email" class="form-control" id="login" name="login" required>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" required>
+                        <input type="password" class="form-control" id="password" name='Pass' required>
                     </div>
                     <div>
                         <button type="submit" class="btn btn-outline-dark">Login</button>
@@ -55,22 +55,23 @@
                     </div>
                 </div>
             </div>
+            {% if msg=='error' %}
+            <label id="result" name="fail"></label>
+            {% else %}
+            <label id="result" name="pass"></label>
+            {% endif %}
     </form>
 </body>
 <script>
-    function myFunction() {
-        var login = document.getElementById("login").value;
-        var pass = document.getElementById("password").value;
-        if (login != "mehuljain541@gmail.com") {
-            alert("Wrong Username");
+    function myFunction(){
+        var result=document.getElementById('result').getAttribute('name');
+        if(result=='fail'){
+            alert("Wrong username or password");
             return false;
         }
-        else if (pass != "123") {
-            alert("Wrong Password");
-            return false;
-        }
+        else{
         return true;
+        }
     }
 </script>
-
 </html>
