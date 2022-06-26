@@ -28,33 +28,36 @@ def welcome():
     else:
         return render_template('welcome.html')
     
+@app.route("/login")
+@app.route("/login<msg>")
+def login(msg=''):
+    if msg=='err':
+        return render_template('login.html',msg='err')
+    else:
+        return render_template('login.html',msg='')
+    
 
-@app.route("/login",methods = ['POST', 'GET'])
-def login():
-    msg=''
+@app.route("/v-nv",methods = ['POST', 'GET'])
+def v_nv():
     if request.method=='POST':
         details=request.form
         email=details["login"]
         password=details["Pass"]
         cur=mysql.connection.cursor()
-        result=cur.execute("Select * from register where email='%s'",(email))
-        user=result.fetchone()
+        cur.execute(f"Select email,password from register where email='{email}'")
+        user=cur.fetchone()
         if user:
-            if email==user['Email']:
-                if password==user['Password']:
-                    return redirect(url_for('v-nv'))
+            if email==user[0]:
+                if password==user[1]:
+                    return render_template('v-nv.html')
                 else:
-                    return render_template('login.html',msg='p')
+                    return redirect("/loginerr")
             else:
-                return render_template('login.html',msg='user')
+                return redirect("/loginerr")
         else:
-            return render_template('login.html',msg='err')
+            return redirect("/loginerr")
     else:
-        return render_template('login.html')
-
-@app.route("/v-nv",methods = ['POST', 'GET'])
-def v_nv():
-            return render_template('v-nv.html')
+        return render_template('v-nv.html')
 
 @app.route("/register")
 def register():
