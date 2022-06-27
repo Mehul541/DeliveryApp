@@ -4,6 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Food Delivery Service</title>
   <style>
     body {
       font-family: Arial;
@@ -114,6 +115,10 @@
         margin-bottom: 20px;
       }
     }
+
+    .paddingBetweenCols td {
+      padding: 0 15px;
+    }
   </style>
 </head>
 
@@ -124,7 +129,7 @@
   <div class="row">
     <div class="col-75">
       <div class="container">
-        <form action="/action_page.php">
+        <form action="/thankyou">
           <img src="static/logo.png" style="margin-left: 950px;" width="100px" height="100px">
           <div class="row">
             <div class="col-50">
@@ -188,13 +193,39 @@
     </div>
     <div class="col-25">
       <div class="container">
-        <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-
-        <p>Total <span class="price" style="color:black"><b>1348</b></span></p>
+        <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b id="q"></b></span></h4>
+        <table class="paddingBetweenCols">
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+        {% for i in range(0,8) %}
+        <tr>
+        <td id="{{i}}"></td><td id="{{i}}{{i}}"></td><td id="{{i}}{{i}}{{i}}"></td>
+        </tr>
+        {%endfor%}
+        </table>
+        <p>Total <span class="price" style="color:black"><b><span id="Total"></span></b></span></p>
       </div>
     </div>
   </div>
 
 </body>
+<script>
+  var ilist=JSON.parse(window.localStorage.getItem('ilist'));
+  document.getElementById("q").innerHTML=ilist.length;
+  for(i=0;i<ilist.length;i++){
+    document.getElementById(i.toString()).innerHTML=JSON.parse(ilist[i][0]);
+    document.getElementById(i.toString()+i.toString()).innerHTML=JSON.parse(ilist[i][1]);
+    document.getElementById(i.toString()+i.toString()+i.toString()).innerHTML=JSON.parse(ilist[i][2]);
 
+  }
+  sum=0;
+  for(i=0;i<ilist.length;i++)
+  {
+    sum=sum+(JSON.parse(ilist[i][1])*JSON.parse(ilist[i][2]));
+  }
+  document.getElementById("Total").innerHTML=sum;
+</script>
 </html>

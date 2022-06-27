@@ -65,7 +65,7 @@ def register():
 
 @app.route("/checkout")
 def checkout():
-    return render_template("checkout.html")
+    return render_template('checkout.html')
 
 @app.route("/veg")
 def veg():
@@ -74,6 +74,10 @@ def veg():
 @app.route("/nveg")
 def nveg():
     return render_template("nveg.html")
+
+@app.route("/thankyou")
+def thanks():
+    return render_template("thankyou.html")
 
 if __name__=="__main__":
     app.run(debug=True,port=8000)
